@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import BookCover from './components/BookCover'
 import Synopsis from './components/Synopsis'
 import AuthorBio from './components/AuthorBio'
-import BuyButtons from './components/BuyButtons'
 import ContactForm from './components/ContactForm'
 import StorePage from './components/StorePage'
 
@@ -28,17 +27,24 @@ function App() {
     setCurrentPage('home')
     setMobileMenuOpen(false)
     
-    setTimeout(() => {
+    // Use requestAnimationFrame for smoother scrolling
+    requestAnimationFrame(() => {
       const element = document.getElementById(sectionId)
       if (element) {
-        const offset = 80
-        const elementPosition = element.offsetTop - offset
+        // Get the height of the fixed navbar
+        const navbar = document.querySelector('nav')
+        const navbarHeight = navbar ? navbar.offsetHeight : 80
+        
+        // Calculate position with proper offset
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight
+        
         window.scrollTo({
-          top: elementPosition,
+          top: offsetPosition,
           behavior: 'smooth'
         })
       }
-    }, 50)
+    })
   }
 
   const handleStoreClick = () => {
@@ -130,7 +136,7 @@ function App() {
 
       <main className="pt-20">
         {/* Hero Banner */}
-        <section id="home" className="relative bg-stone-900 text-white min-h-[80vh] flex items-center">
+        <section id="home" className="relative bg-stone-900 text-white min-h-[100vh] flex items-center -mt-20 pt-20">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3')] bg-cover bg-center opacity-20"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-stone-900/50 to-stone-900"></div>
           <div className="relative container mx-auto px-6 text-center">
@@ -146,18 +152,11 @@ function App() {
               </button>
             </div>
           </div>
-          
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer">
-            <button onClick={() => scrollToSection('book')} className="text-white/60 hover:text-white transition">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </button>
-          </div>
+        
         </section>
 
         {/* Book Section */}
-        <section id="book" className="py-16 scroll-mt-20">
+        <section id="book" className="py-16 scroll-mt-24">
           <div className="container mx-auto px-6">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-serif font-bold text-stone-800">The Book</h2>
@@ -171,14 +170,14 @@ function App() {
         </section>
 
         {/* Author Section */}
-        <section id="author" className="py-16 bg-stone-100 scroll-mt-20">
+        <section id="author" className="py-16 bg-stone-100 scroll-mt-24">
           <div className="container mx-auto px-6">
             <AuthorBio />
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 bg-stone-100 scroll-mt-20">
+        <section id="contact" className="py-16 bg-stone-100 scroll-mt-24">
           <div className="container mx-auto px-6">
             <ContactForm />
           </div>

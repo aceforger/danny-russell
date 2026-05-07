@@ -18,7 +18,7 @@ const AuthorBio = () => {
         
         <div className="md:col-span-2 space-y-4">
           <p className="text-lg text-stone-700 leading-relaxed">
-            <span className="font-bold text-2xl text-amber-600">Russell</span> is an award-winning author of speculative fiction whose work explores the intersection of technology, memory, and human identity.
+            <span className="font-bold text-2xl text-amber-600">Danny Russell</span> is an award-winning author of speculative fiction whose work explores the intersection of technology, memory, and human identity.
           </p>
           
           <p className="text-stone-600 leading-relaxed">
