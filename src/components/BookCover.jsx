@@ -7,7 +7,7 @@ const BookCover = () => {
       <div className="relative bg-stone-800 rounded-lg shadow-2xl overflow-hidden">
         <div className="aspect-[2/3] relative">
           <img 
-            src="/images/world.jpg"
+            src="/images/world.png"
             alt="The World Was Too Flat - Book Cover by Danny Russell"
             className="w-full h-full object-cover"
             onError={(e) => {

@@ -90,9 +90,20 @@ function App() {
           <div className="flex justify-between items-center">
             <button 
               onClick={() => scrollToSection('home')} 
-              className="text-2xl font-serif font-bold text-stone-800 hover:text-amber-600 transition transform hover:scale-105"
+              className="flex items-center gap-3 transition transform hover:scale-105"
             >
-              Danny Russell
+              <img 
+                src="/images/logo.png" 
+                alt="Danny Russell Logo" 
+                className="h-10 w-auto object-contain"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.style.display = 'none';
+                }}
+              />
+              <span className="text-2xl font-serif font-bold text-orange-800 hover:text-amber-600 transition">
+                Danny Russell
+              </span>
             </button>
             
             <div className="hidden md:flex space-x-8">
@@ -136,7 +147,7 @@ function App() {
 
       <main className="pt-20">
         {/* Hero Banner */}
-        <section id="home" className="relative bg-stone-900 text-white min-h-[100vh] flex items-center -mt-20 pt-20">
+        <section id="home" className="relative bg-stone-500 text-white min-h-[100vh] flex items-center -mt-20 pt-20">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3')] bg-cover bg-center opacity-20"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-stone-900/50 to-stone-900"></div>
           <div className="relative container mx-auto px-6 text-center">
@@ -156,8 +167,8 @@ function App() {
         </section>
 
         {/* Book Section */}
-        <section id="book" className="py-16 scroll-mt-24">
-          <div className="container mx-auto px-6">
+        <section id="book" className="py-14 scroll-mt-30">
+          <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-serif font-bold text-stone-800">The Book</h2>
               <div className="w-16 h-0.5 bg-amber-600 mx-auto mt-3"></div>
@@ -171,7 +182,7 @@ function App() {
 
         {/* Author Section */}
         <section id="author" className="py-16 bg-stone-100 scroll-mt-24">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-4">
             <AuthorBio />
           </div>
         </section>
@@ -186,11 +197,11 @@ function App() {
 
       <footer className="bg-stone-900 text-white py-8">
         <div className="container mx-auto px-6 text-center">
-          <p>&copy; 2024 Danny Russell. All rights reserved.</p>
+          <p>&copy; 2026 Danny Russell. All rights reserved.</p>
           <div className="mt-3 flex justify-center space-x-6">
             <a href="mailto:drussell5@embarqmail.com" className="text-stone-400 hover:text-amber-400 transition text-sm">✉️ Email</a>
-            <a href="https://www.amazon.com/World-Was-Flat-Too-ebook/dp/B08N7V22LS" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-amber-400 transition text-sm">📚 Amazon</a>
-            <a href="#" className="text-stone-400 hover:text-amber-400 transition text-sm">⭐ Goodreads</a>
+            {/* <a href="https://www.amazon.com/World-Was-Flat-Too-ebook/dp/B08N7V22LS" target="_blank" rel="noopener noreferrer" className="text-stone-400 hover:text-amber-400 transition text-sm">📚 Amazon</a>
+            <a href="#" className="text-stone-400 hover:text-amber-400 transition text-sm">⭐ Goodreads</a> */}
           </div>
         </div>
       </footer>

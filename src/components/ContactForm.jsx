@@ -54,7 +54,7 @@ const ContactForm = () => {
             </div>
           </div>
           
-          <div className="bg-white rounded-xl p-6 shadow-md transform transition hover:scale-105">
+          {/* <div className="bg-white rounded-xl p-6 shadow-md transform transition hover:scale-105">
             <h3 className="text-xl font-bold text-stone-800 mb-4">Connect Online</h3>
             <div className="space-y-2">
               <a href="https://www.amazon.com/World-Was-Flat-Too-ebook/dp/B08N7V22LS" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-stone-600 hover:text-amber-600 transition group">
@@ -66,7 +66,7 @@ const ContactForm = () => {
                 <span>Goodreads</span>
               </a>
             </div>
-          </div>
+          </div> */}
           
           <div className="bg-amber-50 rounded-xl p-6 border border-amber-200 transform transition hover:scale-105">
             <p className="text-amber-800 text-sm">

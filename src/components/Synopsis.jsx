@@ -5,13 +5,23 @@ const Synopsis = () => {
     <div className="space-y-4">
       <div>
         <h2 className="text-3xl font-serif font-bold text-stone-800 mb-1">The World Was Too Flat</h2>
-        <p className="text-amber-600 font-medium text-sm mb-3">Book Two in the Flat World Series</p>
+        <p className="text-amber-600 font-medium text-sm mb-3">Now combined with "The World Was Flat" into one complete novel</p>
         <div className="flex flex-wrap gap-2 mb-4">
           <span className="px-2 py-0.5 bg-amber-100 text-amber-800 text-xs rounded-full">Historical Fiction</span>
           <span className="px-2 py-0.5 bg-amber-100 text-amber-800 text-xs rounded-full">Coming of Age</span>
           <span className="px-2 py-0.5 bg-amber-100 text-amber-800 text-xs rounded-full">Small Town Life</span>
           <span className="px-2 py-0.5 bg-amber-100 text-amber-800 text-xs rounded-full">290 pages</span>
         </div>
+      </div>
+      
+      {/* Caption about the novels */}
+      <div className="bg-amber-50 p-3 rounded-lg border border-amber-200 text-center">
+        <p className="text-amber-800 text-sm">
+          📚 <span className="font-semibold">Note:</span> This was Russell's first attempt at writing. 
+          First book was <span className="font-semibold">"The World Was Flat"</span> followed by 
+          <span className="font-semibold"> "The World Was Too Flat"</span> which is a follow-up of the same characters from the first book. 
+          They are now combined into one novel.
+        </p>
       </div>
       
       <div className="prose prose-stone max-w-none">
@@ -34,7 +44,7 @@ const Synopsis = () => {
         
         <div className="bg-stone-50 p-4 rounded-lg border-l-4 border-stone-400 my-4">
           <p className="text-stone-700 font-medium italic text-sm mb-1">
-            "This picks up when they are in their sixties and continues until their deaths. Very easy to read... Well worth reading."
+            "Well worth reading. Very easy to read and I am going to find my copy of the first book and reread it."
           </p>
           <p className="text-stone-500 text-xs">— Max E. Brown, Amazon Review ★★★★★</p>
         </div>
