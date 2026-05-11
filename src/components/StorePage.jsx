@@ -20,21 +20,23 @@ const StorePage = ({ onBackToHome }) => {
           sku: 'ISBN: 979-8887034386', 
           pages: 290,
           storeLinks: {
-            amazon: 'https://www.amazon.com/World-Was-Flat-Too-Paperback/dp/9798887034386',
-            barnes: '#',
-            apple: '#',
-            google: '#'
+            amazon: 'https://www.amazon.com/World-Was-Too-Flat/dp/B0DXS3C5WF/ref=tmm_pap_swatch_0',
+            bam: 'https://www.booksamillion.com/p/World-Was-Too-Flat/Danny-Russell/9798887034386',
+            barnes: '#', // Not available for this format
+            apple: '#',  // Not available
+            google: '#'  // Not available
           }
         },
         kindle: { 
           name: 'Kindle', 
-          sku: 'ISBN: 978-1-5246-9054-0', 
+          sku: 'ISBN: 978-1954168046', 
           pages: 344,
           storeLinks: {
-            amazon: 'https://www.amazon.com/World-Was-Flat-Too-ebook/dp/B08N7V22LS',
-            barnes: '#',
-            apple: '#',
-            google: '#'
+            amazon: 'https://www.amazon.com/World-Was-Flat-Too-ebook/dp/B08N7V22LS/ref=tmm_kin_swatch_0',
+            bam: '#',     // Not available
+            barnes: '#',  // Not available
+            apple: '#',   // Not available
+            google: '#'   // Not available
           }
         },
         ebook: { 
@@ -42,10 +44,11 @@ const StorePage = ({ onBackToHome }) => {
           sku: 'ISBN: 9798887034393', 
           pages: 344,
           storeLinks: {
-            amazon: 'https://www.amazon.com/World-Was-Flat-Too-ebook/dp/B08N7V22LS',
-            barnes: '#',
-            apple: '#',
-            google: '#'
+            amazon: '#',  // Not available for this format
+            bam: '#',     // Not available
+            barnes: 'https://www.barnesandnoble.com/w/the-world-was-too-flat-danny-russell/1147022329',
+            apple: '#',   // Not available
+            google: '#'   // Not available
           }
         },
         audiobook: { 
@@ -54,6 +57,7 @@ const StorePage = ({ onBackToHome }) => {
           pages: 'Narrated',
           storeLinks: {
             amazon: '#',
+            bam: '#',
             barnes: '#',
             apple: '#',
             google: '#'
@@ -67,21 +71,17 @@ const StorePage = ({ onBackToHome }) => {
   const currentBook = books[selectedBookId]
   const currentFormat = currentBook.formats[selectedFormat]
 
-  // Store configuration with icons and link keys
+  // Define store configurations with their keys that match storeLinks
   const stores = [
-    { name: 'Amazon', key: 'amazon', icon: '📚', url: currentFormat.storeLinks.amazon },
-    { name: 'Barnes & Noble', key: 'barnes', icon: '📖', url: currentFormat.storeLinks.barnes },
-    { name: 'Apple Books', key: 'apple', icon: '🍎', url: currentFormat.storeLinks.apple },
-    { name: 'Google Play', key: 'google', icon: '▶️', url: currentFormat.storeLinks.google }
+    { name: 'Amazon', key: 'amazon', icon: '📚' },
+    { name: 'Books-A-Million', key: 'bam', icon: '📖' },
+    { name: 'Barnes & Noble', key: 'barnes', icon: '📚' },
+    { name: 'Apple Books', key: 'apple', icon: '🍎' },
+    { name: 'Google Play', key: 'google', icon: '▶️' }
   ]
 
   // Get list of books for navigation
   const bookList = Object.keys(books).map(key => books[key])
-
-  // Update store URLs when format changes
-  const getStoreUrl = (storeKey) => {
-    return currentFormat.storeLinks[storeKey] || '#'
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 to-amber-50 pt-24">
@@ -100,7 +100,12 @@ const StorePage = ({ onBackToHome }) => {
             {bookList.map((book) => (
               <button
                 key={book.id}
-                onClick={() => setSelectedBookId(book.id)}
+                onClick={() => {
+                  setSelectedBookId(book.id)
+                  // Reset to a default format that exists for this book
+                  const firstAvailableFormat = Object.keys(book.formats)[0]
+                  setSelectedFormat(firstAvailableFormat)
+                }}
                 className={`px-4 py-2 rounded-full transition text-sm ${
                   selectedBookId === book.id 
                     ? 'bg-amber-600 text-white shadow-md' 
@@ -131,7 +136,7 @@ const StorePage = ({ onBackToHome }) => {
               </div>
             </div>
             <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-white px-3 py-1 rounded-full shadow-md text-xs whitespace-nowrap">
-              <span className="text-stone-600">📖 {currentBook.pages} pages</span>
+              <span className="text-stone-600">📖 {currentFormat.pages} pages</span>
               <span className="mx-1 text-stone-300">|</span>
               <span className="text-stone-600">📅 {currentBook.publishDate}</span>
             </div>
@@ -174,37 +179,45 @@ const StorePage = ({ onBackToHome }) => {
               <span className="text-stone-600 text-sm ml-1">{currentBook.rating} out of 5 stars</span>
             </div>
 
-            {/* Store Icons - Links change based on selected format */}
+            {/* Store Icons - Links now dynamically use currentFormat.storeLinks */}
             <div>
               <p className="text-stone-600 text-sm mb-3 text-center">Buy {currentFormat.name} from:</p>
               <div className="flex justify-center gap-6 flex-wrap">
-                {stores.map((store, idx) => (
-                  <a
-                    key={idx}
-                    href={store.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex flex-col items-center gap-1 p-2 rounded-lg transition group ${store.url === '#' ? 'opacity-40 cursor-not-allowed' : 'hover:bg-stone-100'}`}
-                    onClick={(e) => {
-                      if (store.url === '#') {
-                        e.preventDefault();
-                      }
-                    }}
-                  >
-                    <span className="text-3xl group-hover:scale-110 transition">{store.icon}</span>
-                    <span className="text-xs text-stone-600 group-hover:text-amber-600">{store.name}</span>
-                    {store.url === '#' && (
-                      <span className="text-[10px] text-stone-400">Coming Soon</span>
-                    )}
-                  </a>
-                ))}
+                {stores.map((store, idx) => {
+                  const storeUrl = currentFormat.storeLinks[store.key]
+                  const isAvailable = storeUrl && storeUrl !== '#'
+                  
+                  return (
+                    <a
+                      key={idx}
+                      href={isAvailable ? storeUrl : '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex flex-col items-center gap-1 p-2 rounded-lg transition group ${
+                        !isAvailable ? 'opacity-40 cursor-not-allowed' : 'hover:bg-stone-100'
+                      }`}
+                      onClick={(e) => {
+                        if (!isAvailable) {
+                          e.preventDefault();
+                        }
+                      }}
+                    >
+                      <span className="text-3xl group-hover:scale-110 transition">{store.icon}</span>
+                      <span className="text-xs text-stone-600 group-hover:text-amber-600">{store.name}</span>
+                      {!isAvailable && (
+                        <span className="text-[10px] text-stone-400">Coming Soon</span>
+                      )}
+                    </a>
+                  )
+                })}
               </div>
             </div>
             
             {/* Format hint */}
-            <p className="text-center text-xs text-stone-400 mt-4">
-              📖 Store links update based on selected format
-            </p>
+            <div className="text-center text-xs text-stone-400 mt-4 space-y-1">
+              <p>📖 Store links update based on selected format</p>
+              <p className="text-stone-300">💡 Tip: Different formats are available at different retailers</p>
+            </div>
           </div>
         </div>
 
