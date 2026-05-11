@@ -5,7 +5,7 @@ const AuthorBio = () => {
     <div className="max-w-4xl mx-auto">
       <h2 className="text-4xl font-serif font-bold text-center text-stone-800 mb-12">About Danny Russell</h2>
       
-      <div className="grid md:grid-cols-3 gap-8 items-start">
+      <div className="grid md:grid-cols-3 gap-5 items-start">
         <div className="md:col-span-1">
           <div className="rounded-lg overflow-hidden shadow-xl border-4 border-white">
             <img 

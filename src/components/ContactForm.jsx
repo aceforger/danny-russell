@@ -43,8 +43,8 @@ const ContactForm = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3 group">
                 <span className="text-2xl group-hover:scale-110 transition">✉️</span>
-                <a href="mailto:drussell5@embarqmail.com" className="text-stone-600 hover:text-amber-600 transition">
-                  drussell5@embarqmail.com
+                <a href="mailto:dcrussell1950@gmail.com" className="text-stone-600 hover:text-amber-600 transition">
+                  dcrussell1950@gmail.com
                 </a>
               </div>
               <div className="flex items-center gap-3">
